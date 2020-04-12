@@ -45,3 +45,21 @@ ALTER TABLE "Premises" ADD CONSTRAINT "Premises_fk0" FOREIGN KEY ("owner") REFER
 ALTER TABLE "LeaseAgreement" ADD CONSTRAINT "LeaseAgreement_fk0" FOREIGN KEY ("appartment_id") REFERENCES "Premises"("id");
 ALTER TABLE "LeaseAgreement" ADD CONSTRAINT "LeaseAgreement_fk1" FOREIGN KEY ("party_id") REFERENCES "Party"("id");
 
+
+
+INSERT INTO public."Party"(
+	id, name, government_id, birth_date, private)
+	VALUES (0, 'Donatas Tamosauskas', 123456789, '1970-01-01', True);
+
+INSERT INTO public."Party"(
+	id, name, government_id, birth_date, private)
+	VALUES (1, 'Donald J. Trump', 111111111, '1946-06-14', True);
+
+INSERT INTO public."Premises"(
+	id, city, street, house_number, apartament, owner, type)
+	VALUES (0, 'Vilnius', 'Laisves pr.', '1A', '1', 1, 'Hotel Room');
+	
+INSERT INTO public."LeaseAgreement"(
+	appartment_id, party_id, start_date, end_date, primary_leaser)
+	VALUES (0, 0, '2020-03-11', NULL, True);
+
