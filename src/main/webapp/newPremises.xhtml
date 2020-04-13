@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Add new premises</title>
+</h:head>
+
+<h:body>
+    <h2>All premises:</h2>
+        <h:dataTable value="#{createNewPremises.allPremises}" var="premises"
+                     styleClass="order-table"
+                     headerClass="order-table-header"
+                     rowClasses="order-table-odd-row,order-table-even-row">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{premises.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">City, Country</f:facet>
+                #{premises.city.name}, #{premises.city.countryName}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Street</f:facet>
+                #{premises.street}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">House number</f:facet>
+                #{premises.houseNumber}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Apartament</f:facet>
+                #{premises.apartament}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Owner</f:facet>
+                #{premises.owner.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                #{premises.type}
+            </h:column>
+
+        </h:dataTable>
+
+    <h2>Add new premises</h2>
+        <h:form>
+            <h:outputLabel>City</h:outputLabel>
+            <h:selectOneListbox value="#{createNewPremises.cityId}" required="true">
+                <f:selectItems value="#{createNewPremises.allCities}" var="city"
+                               itemLabel="#{city.name}, #{city.countryName}" itemValue="#{city.id}" />
+                <f:converter converterId="javax.faces.Integer" />
+            </h:selectOneListbox>
+
+            <h:outputLabel>Street</h:outputLabel>
+            <h:inputText value="#{createNewPremises.newPremises.street}" required="true"/>
+
+            <h:outputLabel>House number</h:outputLabel>
+            <h:inputText value="#{createNewPremises.newPremises.houseNumber}" required="true"/>
+
+            <h:outputLabel>Apartament</h:outputLabel>
+            <h:inputText value="#{createNewPremises.newPremises.apartament}" required="true"/>
+
+            <h:outputLabel>Owner ID</h:outputLabel>
+            <h:selectOneListbox value="#{createNewPremises.ownerId}" required="true">
+                <f:selectItems value="#{createNewPremises.allParties}" var="party"
+                               itemLabel="#{party.name}" itemValue="#{party.id}" />
+                <f:converter converterId="javax.faces.Integer" />
+            </h:selectOneListbox>
+
+            <h:outputLabel>Type</h:outputLabel>
+            <h:inputText value="#{createNewPremises.newPremises.type}" required="true"/>
+
+            <h:commandButton value="Add a new party" action="#{createNewPremises.createPremises}"/>
+        </h:form>
+    <h:link outcome="index" value="Back"/>
+
+</h:body>
+</html>

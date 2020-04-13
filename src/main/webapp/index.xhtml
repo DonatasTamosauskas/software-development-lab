@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h2>Parties:</h2>
+    <ol>
+        <ui:repeat value="#{displayInfo.allParties}" var="party">
+            <li>#{party.name}</li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="newParty" value="Add a new party"/>
+
+    <h2>Premises:</h2>
+    <ol>
+        <ui:repeat value="#{displayInfo.allPremises}" var="premises">
+            <li>#{premises.city.name}, #{premises.street}, #{premises.houseNumber}, #{premises.city.countryName}</li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="newPremises" value="Add new premises"/>
+</h:body>
+</html>
