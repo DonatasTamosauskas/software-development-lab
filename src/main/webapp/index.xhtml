@@ -17,7 +17,9 @@
     <h2>Premises:</h2>
     <ol>
         <ui:repeat value="#{displayInfo.allPremises}" var="premises">
-            <li>#{premises.city.name}, #{premises.street}, #{premises.houseNumber}, #{premises.city.countryName}</li>
+            <li>#{premises.city.name}, #{premises.street}, #{premises.houseNumber}, #{premises.city.countryName}
+            <h:link value="Leasing Agreements" outcome="leasingHistory?premisesId=#{premises.id}"/>
+            </li>
         </ui:repeat>
     </ol>
     <h:link outcome="newPremises" value="Add new premises"/>

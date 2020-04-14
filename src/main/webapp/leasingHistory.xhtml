@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xml:lang="en" lang="en"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Leasing history of #{leasingHistory.selectedPremises.city.name}, #{leasingHistory.selectedPremises.street},
+        #{leasingHistory.selectedPremises.houseNumber}, #{leasingHistory.selectedPremises.city.countryName}</title>
+</head>
+<body>
+    <h1>Leasing history </h1>
+    <h3> #{leasingHistory.selectedPremises.city.name}, #{leasingHistory.selectedPremises.street},
+    #{leasingHistory.selectedPremises.houseNumber}, #{leasingHistory.selectedPremises.city.countryName},
+    #{leasingHistory.selectedPremises.owner.name}
+    </h3>
+
+    <h2>Leases:</h2>
+    <ol>
+        <ui:repeat value="#{leasingHistory.premisesLeasingAgreements}" var="lease">
+            <li>#{lease.startDate} -> #{lease.endDate} <br/>
+                #{lease.party.name}<br/>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="index" value="Back"/>
+
+</body>
+</html>

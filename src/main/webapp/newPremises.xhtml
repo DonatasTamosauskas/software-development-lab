@@ -54,33 +54,52 @@
 
     <h2>Add new premises</h2>
         <h:form>
-            <h:outputLabel>City</h:outputLabel>
-            <h:selectOneListbox value="#{createNewPremises.cityId}" required="true">
+            <h:outputLabel>City: </h:outputLabel>
+            <br/>
+            <h:selectOneMenu value="#{createNewPremises.cityId}" required="true">
                 <f:selectItems value="#{createNewPremises.allCities}" var="city"
                                itemLabel="#{city.name}, #{city.countryName}" itemValue="#{city.id}" />
                 <f:converter converterId="javax.faces.Integer" />
-            </h:selectOneListbox>
+            </h:selectOneMenu>
+            <br/>
+            <br/>
 
-            <h:outputLabel>Street</h:outputLabel>
+            <h:outputLabel>Street: </h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewPremises.newPremises.street}" required="true"/>
+            <br/>
+            <br/>
 
-            <h:outputLabel>House number</h:outputLabel>
+            <h:outputLabel>House number: </h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewPremises.newPremises.houseNumber}" required="true"/>
+            <br/>
+            <br/>
 
-            <h:outputLabel>Apartament</h:outputLabel>
+            <h:outputLabel>Apartament: </h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewPremises.newPremises.apartament}" required="true"/>
+            <br/>
+            <br/>
 
-            <h:outputLabel>Owner ID</h:outputLabel>
-            <h:selectOneListbox value="#{createNewPremises.ownerId}" required="true">
+            <h:outputLabel>Owner: </h:outputLabel>
+            <br/>
+            <h:selectOneMenu value="#{createNewPremises.ownerId}" required="true">
                 <f:selectItems value="#{createNewPremises.allParties}" var="party"
                                itemLabel="#{party.name}" itemValue="#{party.id}" />
                 <f:converter converterId="javax.faces.Integer" />
-            </h:selectOneListbox>
+            </h:selectOneMenu>
+            <br/>
+            <br/>
 
-            <h:outputLabel>Type</h:outputLabel>
+            <h:outputLabel>Type: </h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewPremises.newPremises.type}" required="true"/>
+            <br/>
+            <br/>
 
             <h:commandButton value="Add a new party" action="#{createNewPremises.createPremises}"/>
+            <br/>
         </h:form>
     <h:link outcome="index" value="Back"/>
 

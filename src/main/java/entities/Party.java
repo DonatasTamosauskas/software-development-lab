@@ -38,14 +38,13 @@ public class Party implements Serializable {
 
 
     public Party() {
-//        this.isPrivate = true;
     }
 
     public Party(String name, String governmentId, Date birthDate, boolean isPrivate) {
         this.name = name;
         this.governmentId = governmentId;
         this.birthDate = birthDate;
-//        this.isPrivate = isPrivate;
+        this.isPrivate = isPrivate;
     }
 
     @Override

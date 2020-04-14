@@ -45,20 +45,33 @@
     <h2>Add a new party</h2>
         <h:form>
             <h:outputLabel>Name</h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewParty.newParty.name}" required="true"/>
+            <br/>
+            <br/>
 
             <h:outputLabel>Government ID</h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewParty.newParty.governmentId}" required="true"/>
+            <br/>
+            <br/>
 
             <h:outputLabel>Birth date (yyyy-mm-dd)</h:outputLabel>
+            <br/>
             <h:inputText value="#{createNewParty.newParty.birthDate}" required="true">
                 <f:convertDateTime pattern="yyyy-mm-dd"/>
             </h:inputText>
+            <br/>
+            <br/>
 
             <h:outputLabel>Private person?</h:outputLabel>
+            <br/>
             <h:selectBooleanCheckbox value="#{createNewParty.newParty.isPrivate}" required="true"/>
+            <br/>
+            <br/>
 
             <h:commandButton value="Add a new party" action="#{createNewParty.createParty}"/>
+            <br/>
         </h:form>
     <h:link outcome="index" value="Back"/>
 

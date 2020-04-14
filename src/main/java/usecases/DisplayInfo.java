@@ -11,10 +11,11 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.*;
 
 @Model
-public class DisplayInfo {
+public class DisplayInfo implements Serializable {
 
     @Inject
     private PartyDAO partyDAO;
@@ -28,11 +29,12 @@ public class DisplayInfo {
     @Getter
     private List<Premises> allPremises;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private Party partyToCreate = new Party();
 
     @PostConstruct
-    public void init(){
+    public void init() {
         loadAllParties();
         loadAllPremises();
     }
