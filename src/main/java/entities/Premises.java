@@ -43,6 +43,14 @@ public class Premises implements Serializable {
     public Premises() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public City getCity() {
         return city;
     }

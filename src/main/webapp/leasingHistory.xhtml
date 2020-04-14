@@ -17,9 +17,11 @@
 
     <h2>Leases:</h2>
     <ol>
-        <ui:repeat value="#{leasingHistory.premisesLeasingAgreements}" var="lease">
-            <li>#{lease.startDate} -> #{lease.endDate} <br/>
-                #{lease.party.name}
+        <ui:repeat value="#{leasingHistory.displayElements}" var="displayElement">
+            <li>#{displayElement.getStartDate()} -> #{displayElement.getEndDate()} <br/>
+                <ui:repeat value="#{displayElement.getLeasers()}" var="leaser">
+                    #{leaser}  
+                </ui:repeat>
             </li>
             <br/>
         </ui:repeat>
