@@ -38,8 +38,6 @@ public class LeasingHistory {
 
         this.selectedPremises = premisesDAO.findById(premisesId);
         this.premisesLeasingAgreements = leaseAgreementDAO.loadAllByPremises(this.selectedPremises);
-
-        System.out.println(this.premisesLeasingAgreements.size());
     }
 
 }
