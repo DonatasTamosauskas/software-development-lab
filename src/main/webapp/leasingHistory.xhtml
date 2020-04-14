@@ -19,8 +19,9 @@
     <ol>
         <ui:repeat value="#{leasingHistory.premisesLeasingAgreements}" var="lease">
             <li>#{lease.startDate} -> #{lease.endDate} <br/>
-                #{lease.party.name}<br/>
+                #{lease.party.name}
             </li>
+            <br/>
         </ui:repeat>
     </ol>
     <h:link outcome="index" value="Back"/>

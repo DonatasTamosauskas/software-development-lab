@@ -40,6 +40,22 @@ public class Party implements Serializable {
     public Party() {
     }
 
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGovernmentId() {
+        return governmentId;
+    }
+
+    public void setGovernmentId(String governmentId) {
+        this.governmentId = governmentId;
+    }
+
     public Party(String name, String governmentId, Date birthDate, boolean isPrivate) {
         this.name = name;
         this.governmentId = governmentId;

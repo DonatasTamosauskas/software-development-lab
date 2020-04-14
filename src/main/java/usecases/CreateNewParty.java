@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Model
@@ -32,9 +33,19 @@ public class CreateNewParty {
         this.allParties = partyDAO.loadAll();
     }
 
+    public boolean correctGovernmentId(Party party) {
+        SimpleDateFormat checkPattern = new SimpleDateFormat("yyMMdd");
+        String checkDate = checkPattern.format(party.getBirthDate());
+        return party.getGovernmentId().contains(checkDate);
+    }
+
     @Transactional
     public void createParty() {
-        this.partyDAO.create(this.newParty);
+        if (correctGovernmentId(this.newParty)) {
+            this.partyDAO.create(this.newParty);
+        } else {
+            System.out.println("Wrong government ID format!");
+        }
     }
 
 }
