@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="PostgresDS" targetRuntime="MyBatis3Simple">
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost:5432/postgres"
+                        userId="postgres"
+                        password="PinapplesAreYellowAndJuicy">
+        </jdbcConnection>
+
+        <javaModelGenerator
+                targetPackage="mybatis.model"
+                targetProject="MAVEN" />
+
+<!--        <javaClientGenerator type="ANNOTATEDMAPPER"-->
+<!--                             targetPackage="mybatis.dao"-->
+<!--                             targetProject="MAVEN" />-->
+
+        <sqlMapGenerator targetPackage="mybatis.xml"
+                         targetProject="MAVEN" />
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="mybatis.dao"
+                             targetProject="MAVEN" />
+
+
+        <table schema="public" tableName="party">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="premises">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="lease_agreement">
+        </table>
+        <table schema="public" tableName="city">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
+
+
+<!--MyBatisConfig.xmln-->
+<!--        <?xml version="1.0" encoding="UTF-8" ?>-->
+<!--        <!DOCTYPE configuration-->
+<!--                PUBLIC "-//mybatis.org//DTD Config 3.0//EN"-->
+<!--                "http://mybatis.org/dtd/mybatis-3-config.dtd">-->
+<!--<configuration>-->
+<!--&lt;!&ndash;    <typeAliases>&ndash;&gt;-->
+<!--&lt;!&ndash;        <typeAlias type="lt.vu.mybatis.model.Team" alias="Team"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <typeAlias type="lt.vu.mybatis.model.Player" alias="Player"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </typeAliases>&ndash;&gt;-->
+<!--<environments default="development">-->
+<!--    <environment id="development">-->
+<!--        <transactionManager type="MANAGED"/>-->
+<!--        <dataSource type="JNDI">-->
+<!--            <property name="data_source" value="java:/PostgresDS"/>-->
+<!--        </dataSource>-->
+<!--    </environment>-->
+<!--</environments>-->
+<!--&lt;!&ndash;    <mappers>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mapper resource="mybatis.xml/TeamMapper.xml"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mapper resource="mybatis.xml/PlayerMapper.xml"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mappers>&ndash;&gt;-->
+<!--</configuration>-->

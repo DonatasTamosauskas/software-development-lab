@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.dao.PremisesMapper">
+  <resultMap id="BaseResultMap" type="mybatis.model.Premises">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="street" jdbcType="VARCHAR" property="street" />
+    <result column="house_number" jdbcType="VARCHAR" property="houseNumber" />
+    <result column="apartament" jdbcType="VARCHAR" property="apartament" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from public.premises
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="mybatis.model.Premises" useGeneratedKeys="true">
+    insert into public.premises (city_id, street, house_number, 
+      apartament, owner_id, type
+      )
+    values (#{cityId,jdbcType=INTEGER}, #{street,jdbcType=VARCHAR}, #{houseNumber,jdbcType=VARCHAR}, 
+      #{apartament,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="mybatis.model.Premises">
+    update public.premises
+    set city_id = #{cityId,jdbcType=INTEGER},
+      street = #{street,jdbcType=VARCHAR},
+      house_number = #{houseNumber,jdbcType=VARCHAR},
+      apartament = #{apartament,jdbcType=VARCHAR},
+      owner_id = #{ownerId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, city_id, street, house_number, apartament, owner_id, type
+    from public.premises
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, city_id, street, house_number, apartament, owner_id, type
+    from public.premises
+  </select>
+</mapper>

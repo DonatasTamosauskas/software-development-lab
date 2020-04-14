@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.dao.LeaseAgreementMapper">
+  <resultMap id="BaseResultMap" type="mybatis.model.LeaseAgreement">
+    <id column="appartment_id" jdbcType="INTEGER" property="appartmentId" />
+    <id column="party_id" jdbcType="INTEGER" property="partyId" />
+    <id column="start_date" jdbcType="DATE" property="startDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="primary_leaser" jdbcType="BIT" property="primaryLeaser" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from public.lease_agreement
+    where appartment_id = #{appartmentId,jdbcType=INTEGER}
+      and party_id = #{partyId,jdbcType=INTEGER}
+      and start_date = #{startDate,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="mybatis.model.LeaseAgreement">
+    insert into public.lease_agreement (appartment_id, party_id, start_date, 
+      end_date, primary_leaser)
+    values (#{appartmentId,jdbcType=INTEGER}, #{partyId,jdbcType=INTEGER}, #{startDate,jdbcType=DATE}, 
+      #{endDate,jdbcType=DATE}, #{primaryLeaser,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="mybatis.model.LeaseAgreement">
+    update public.lease_agreement
+    set end_date = #{endDate,jdbcType=DATE},
+      primary_leaser = #{primaryLeaser,jdbcType=BIT}
+    where appartment_id = #{appartmentId,jdbcType=INTEGER}
+      and party_id = #{partyId,jdbcType=INTEGER}
+      and start_date = #{startDate,jdbcType=DATE}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select appartment_id, party_id, start_date, end_date, primary_leaser
+    from public.lease_agreement
+    where appartment_id = #{appartmentId,jdbcType=INTEGER}
+      and party_id = #{partyId,jdbcType=INTEGER}
+      and start_date = #{startDate,jdbcType=DATE}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select appartment_id, party_id, start_date, end_date, primary_leaser
+    from public.lease_agreement
+  </select>
+</mapper>

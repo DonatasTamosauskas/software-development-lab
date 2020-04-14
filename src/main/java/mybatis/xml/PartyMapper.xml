@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.dao.PartyMapper">
+  <resultMap id="BaseResultMap" type="mybatis.model.Party">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="government_id" jdbcType="VARCHAR" property="governmentId" />
+    <result column="birth_date" jdbcType="DATE" property="birthDate" />
+    <result column="is_private" jdbcType="BIT" property="isPrivate" />
+    <result column="current_city_id" jdbcType="INTEGER" property="currentCityId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from public.party
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="mybatis.model.Party" useGeneratedKeys="true">
+    insert into public.party (name, government_id, birth_date, 
+      is_private, current_city_id)
+    values (#{name,jdbcType=VARCHAR}, #{governmentId,jdbcType=VARCHAR}, #{birthDate,jdbcType=DATE}, 
+      #{isPrivate,jdbcType=BIT}, #{currentCityId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="mybatis.model.Party">
+    update public.party
+    set name = #{name,jdbcType=VARCHAR},
+      government_id = #{governmentId,jdbcType=VARCHAR},
+      birth_date = #{birthDate,jdbcType=DATE},
+      is_private = #{isPrivate,jdbcType=BIT},
+      current_city_id = #{currentCityId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, government_id, birth_date, is_private, current_city_id
+    from public.party
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, government_id, birth_date, is_private, current_city_id
+    from public.party
+  </select>
+</mapper>
