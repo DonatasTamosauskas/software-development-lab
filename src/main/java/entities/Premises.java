@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "Premises.findAll", query = "select id from Premises as id")
 })
-@Table(name = "Premises")
+@Table(name = "premises")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")

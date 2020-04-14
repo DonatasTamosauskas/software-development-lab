@@ -27,12 +27,6 @@ public class PartyDAO {
         return em.createNamedQuery("Party.findAll", Party.class).getResultList();
     }
 
-//    public List<Party> loadTest() {
-//        List<Party> fakeParties = new ArrayList<Party>();
-//        fakeParties.add(new Party(2, "Bernie Sanders", "1111111111", new Date(), true));
-//        return fakeParties;
-//    }
-
     public Party update(Party party){
         return em.merge(party);
     }

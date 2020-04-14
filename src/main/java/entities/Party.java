@@ -13,17 +13,16 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "Party.findAll", query = "select id from Party as id")
 })
-@Table(name = "Party")
+@Table(name = "party")
 @Getter
 @Setter
 public class Party implements Serializable {
-    //insert into public.party values (0, '1946-06-14', '111111111', TRUE, 'Donald J. Trump');
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Size(max = 255)
-    @Column(name = "name")
     private String name;
 
     @Size(max = 255)
@@ -35,7 +34,6 @@ public class Party implements Serializable {
 
     @Column(name = "is_private")
     private Boolean isPrivate;
-
 
     public Party() {
     }
