@@ -44,6 +44,8 @@ public class CreateNewParty {
         if (correctGovernmentId(this.newParty)) {
             this.partyDAO.create(this.newParty);
         } else {
+            // TODO: Remove the temporary government id check bypass
+            this.partyDAO.create(this.newParty);
             System.out.println("Wrong government ID format!");
         }
     }

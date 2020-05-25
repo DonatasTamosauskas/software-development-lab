@@ -20,7 +20,7 @@
         <ui:repeat value="#{leasingHistory.displayElements}" var="displayElement">
             <li>#{displayElement.getStartDate()} -> #{displayElement.getEndDate()} <br/>
                 <ui:repeat value="#{displayElement.getLeasers()}" var="leaser">
-                    #{leaser}  
+                    #{leaser}
                 </ui:repeat>
             </li>
             <br/>
