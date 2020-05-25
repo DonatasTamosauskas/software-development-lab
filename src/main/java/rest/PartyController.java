@@ -9,11 +9,13 @@ import rest.contracts.PartyDTO;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.OptimisticLockException;
-import javax.print.attribute.standard.Media;
+import javax.persistence.PessimisticLockException;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Path("/party")
@@ -24,17 +26,44 @@ public class PartyController {
     @Setter
     private PartyDAO partyDAO;
 
-    // TODO: Needs to be implemented
-    @Path("/")
+    @Path("")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        return Response.status(Response.Status.ACCEPTED).build();
+        List<Party> allParties = partyDAO.loadAll();
+        if (allParties.size() == 0) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        List<PartyDTO> partiesDTOs = allParties.stream()
+                .map((PartyDTO::new))
+                .collect(Collectors.toList());
+
+        return Response.ok(partiesDTOs).build();
+    }
+
+    @Path("")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response createNew(PartyDTO partyDTO) {
+        try {
+            Party party = new Party();
+            party.setName(partyDTO.getName());
+            party.setGovernmentId(partyDTO.getGovernmentId());
+            party.setBirthDate(partyDTO.getBirthDate());
+            party.setPrivate(partyDTO.getPrivate());
+
+            partyDAO.create(party);
+            return Response.ok().build();
+        } catch (OptimisticLockException | PessimisticLockException ole) {
+            return Response.status(Response.Status.CONFLICT).build();
+        }
     }
 
     @Path("/{id}")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_XML)
     public Response getById(@PathParam("id") final Integer id) {
         Party party = partyDAO.findOne(id);
         if (party == null) {

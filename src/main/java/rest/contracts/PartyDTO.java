@@ -4,13 +4,17 @@ import entities.Party;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Date;
 
 @Getter @Setter
+@XmlRootElement
 public class PartyDTO {
     private String name;
     private String governmentId;
     private Date birthDate;
+    @XmlTransient
     private Boolean isPrivate;
 
     public PartyDTO() {
