@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,8 +57,10 @@ public class PartyController {
 
             partyDAO.create(party);
             return Response.ok().build();
-        } catch (OptimisticLockException | PessimisticLockException ole) {
+        } catch (OptimisticLockException | PessimisticLockException le) {
             return Response.status(Response.Status.CONFLICT).build();
+        } catch (SQLException sqle) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 

@@ -3,6 +3,7 @@ package usecases;
 import entities.City;
 import entities.Party;
 import entities.Premises;
+import interceptors.ExceptionCaughtInvocation;
 import lombok.Getter;
 import lombok.Setter;
 import persistence.CityDAO;
@@ -68,6 +69,7 @@ public class CreateNewPremises {
     }
 
     @Transactional
+    @ExceptionCaughtInvocation
     public void createPremises() {
         Party owner = this.partyDAO.findOne(this.ownerId);
         City city = this.cityDAO.findOne(this.cityId);

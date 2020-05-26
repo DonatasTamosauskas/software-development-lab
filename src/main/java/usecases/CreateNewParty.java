@@ -1,6 +1,7 @@
 package usecases;
 
 import entities.Party;
+import interceptors.ExceptionCaughtInvocation;
 import lombok.Getter;
 import lombok.Setter;
 import persistence.PartyDAO;
@@ -10,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -38,7 +40,8 @@ public class CreateNewParty {
     }
 
     @Transactional
-    public void createParty() {
+    @ExceptionCaughtInvocation
+    public void createParty() throws SQLException {
         if (governmentIdValidator.governmentIdCorrect(this.newParty)) {
             this.partyDAO.create(this.newParty);
         } else {

@@ -7,10 +7,12 @@
         bean-discovery-mode="all">
 
     <interceptors>
+        <class>interceptors.ErrorDisplayer</class>
     </interceptors>
     <alternatives>
 <!--        <class>services.UnitedStatesIdValidator</class>-->
     </alternatives>
     <decorators>
+        <class>services.LoggingGovernmentIdDecorator</class>
     </decorators>
 </beans>

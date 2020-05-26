@@ -1,10 +1,12 @@
 package persistence;
 
 import entities.Party;
+import interceptors.ExceptionCaughtInvocation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,8 +17,13 @@ public class PartyDAO {
     @Inject
     private EntityManager em;
 
-    public void create(Party party){
-        this.em.persist(party);
+    @ExceptionCaughtInvocation
+    public void create(Party party) throws SQLException {
+        if (party.getName().equals("exception")) {
+            throw new SQLException("This is a test exception");
+        } else {
+            this.em.persist(party);
+        }
     }
 
     public Party findOne(Integer id){

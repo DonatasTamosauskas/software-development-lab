@@ -2,6 +2,7 @@ package usecases;
 
 import entities.Party;
 import entities.Premises;
+import interceptors.ExceptionCaughtInvocation;
 import lombok.Getter;
 import lombok.Setter;
 import persistence.PartyDAO;
@@ -12,6 +13,7 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.*;
 
 @Model
@@ -48,7 +50,8 @@ public class DisplayInfo implements Serializable {
     }
 
     @Transactional
-    public void createParty() {
+    @ExceptionCaughtInvocation
+    public void createParty() throws SQLException{
         this.partyDAO.create(this.partyToCreate);
     }
 
