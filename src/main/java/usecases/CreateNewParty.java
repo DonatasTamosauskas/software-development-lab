@@ -4,6 +4,7 @@ import entities.Party;
 import lombok.Getter;
 import lombok.Setter;
 import persistence.PartyDAO;
+import services.GovernmentIdValidator;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -17,6 +18,9 @@ public class CreateNewParty {
 
     @Inject
     private PartyDAO partyDAO;
+
+    @Inject
+    private GovernmentIdValidator governmentIdValidator;
 
     @Getter
     private List<Party> allParties;
@@ -33,15 +37,9 @@ public class CreateNewParty {
         this.allParties = partyDAO.loadAll();
     }
 
-    public boolean correctGovernmentId(Party party) {
-        SimpleDateFormat checkPattern = new SimpleDateFormat("yyMMdd");
-        String checkDate = checkPattern.format(party.getBirthDate());
-        return party.getGovernmentId().contains(checkDate);
-    }
-
     @Transactional
     public void createParty() {
-        if (correctGovernmentId(this.newParty)) {
+        if (governmentIdValidator.governmentIdCorrect(this.newParty)) {
             this.partyDAO.create(this.newParty);
         } else {
             // TODO: Remove the temporary government id check bypass

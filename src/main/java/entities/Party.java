@@ -35,6 +35,10 @@ public class Party implements Serializable {
     @Column(name = "is_private")
     private Boolean isPrivate;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
     public Party() {
     }
 
