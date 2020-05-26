@@ -5,14 +5,13 @@ import interceptors.ExceptionCaughtInvocation;
 import lombok.Getter;
 import lombok.Setter;
 import persistence.PartyDAO;
-import services.GovernmentIdValidator;
+import services.governmentId.GovernmentIdValidator;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Model

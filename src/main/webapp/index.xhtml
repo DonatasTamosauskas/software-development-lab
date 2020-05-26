@@ -23,5 +23,18 @@
         </ui:repeat>
     </ol>
     <h:link outcome="newPremises" value="Add new premises"/>
+
+    <h3>Check government id validity</h3>
+    <h:form>
+        <h:outputLabel>Government ID</h:outputLabel>
+        <br/>
+        <h:inputText value="#{displayInfo.governmentId}" required="true"/>
+        <br/>
+        <br/>
+
+        <h:commandButton value="Check Validity" action="#{displayInfo.openCheckIdValidity}"/>
+        <br/>
+    </h:form>
+
 </h:body>
 </html>

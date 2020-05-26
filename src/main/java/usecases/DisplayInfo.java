@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import persistence.PartyDAO;
 import persistence.PremisesDAO;
+import services.onlineGovernment.OnlineGovernmentService;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -25,6 +26,9 @@ public class DisplayInfo implements Serializable {
     @Inject
     private PremisesDAO premisesDAO;
 
+    @Inject
+    private CheckValidity checkValidity;
+
     @Getter
     private List<Party> allParties;
 
@@ -34,6 +38,10 @@ public class DisplayInfo implements Serializable {
     @Getter
     @Setter
     private Party partyToCreate = new Party();
+
+    @Getter
+    @Setter
+    private String governmentId = "";
 
     @PostConstruct
     public void init() {
@@ -53,6 +61,12 @@ public class DisplayInfo implements Serializable {
     @ExceptionCaughtInvocation
     public void createParty() throws SQLException{
         this.partyDAO.create(this.partyToCreate);
+    }
+
+    public String openCheckIdValidity() {
+        this.checkValidity.resetResults();
+        this.checkValidity.checkGovernmentIdValidity(this.governmentId);
+        return "checkValidity?faces-redirect=true&governmentId=" + this.governmentId;
     }
 
 }

@@ -10,9 +10,9 @@
         <class>interceptors.ErrorDisplayer</class>
     </interceptors>
     <alternatives>
-<!--        <class>services.UnitedStatesIdValidator</class>-->
+<!--        <class>services.governmentId.UnitedStatesIdValidator</class>-->
     </alternatives>
     <decorators>
-        <class>services.LoggingGovernmentIdDecorator</class>
+        <class>services.governmentId.LoggingGovernmentIdDecorator</class>
     </decorators>
 </beans>

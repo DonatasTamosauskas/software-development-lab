@@ -1,9 +1,8 @@
-package services;
+package services.governmentId;
 
 import entities.Party;
 
 import javax.enterprise.inject.Alternative;
-import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

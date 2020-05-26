@@ -1,10 +1,8 @@
-package services;
+package services.governmentId;
 
 import entities.Party;
 
-import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Specializes;
-import java.text.SimpleDateFormat;
 
 @Specializes
 public class OnlineLithuanianIdValidator extends LithuanianIdValidator {
@@ -15,6 +13,11 @@ public class OnlineLithuanianIdValidator extends LithuanianIdValidator {
         // Is safer to use than the in house validation, since the government id is actually checked with government
         // However, government services can go down, or we may have too many users and this service may no longer be desirable
         // Hence there's still a reason to keep the simpler check
+
+
+        // The idea for async here is to: invoke lithuanian government api to check if the government id actually exists
+        // Or create a button in 'create new party' secction that allows to check if the government is valid
+
         return true;
     }
 
